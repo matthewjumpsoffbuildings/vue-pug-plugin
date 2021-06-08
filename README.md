@@ -124,14 +124,14 @@ You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passi
 As expected, you can manually specify the `:key` attribute on the child of a `for` block. For example:
 
 ```pug
-for (item, i) in items
+for item, i in items
   p(:key="i") foo
 ```
 
 However, if you use `key` as the loop index variable name, `:key="key"` will automatically be inserted on the looping element. For example:
 
 ```pug
-for (item, key) in items
+for item, key in items
   p foo
 ```
 
@@ -144,7 +144,7 @@ p(v-for="(item, key) in items" :key="key") foo
 Importantly, if a native pug `for` block has multiple children, since a `template` wrapper will be automatically inserted, if you wish to attach a `:key` attribute to the inserted `template` looping element, you should also use `key` as the name of the loop index variable. For example:
 
 ```pug
-for (item, key) in items
+for item, key in items
   p foo
   p bar
 ```
@@ -157,7 +157,7 @@ template(v-for="(item, key) in items" :key="key")
   p bar
 ```
 
-Any other loop index variable name (eg `for (item, index)...`, `for (item, i)...` etc) will not add the `:key` attribute to the looping element.
+Any other loop index variable name (eg `for item, index...`, `for item, i...` etc) will not add the `:key` attribute to the looping element.
 
 ## Options
 
