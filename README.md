@@ -2,6 +2,26 @@
 
 A loader that simply compiles pug templates into HTML. Forked from @yyx990803/pug-plain-loader
 
+The motivation for this fork is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
+
+```pug
+ul
+  li(v-for="item in items")
+    a(v-if="item.type == 'link'") some link title: {{item.title}}
+    p(v-else) {{item.content}}
+```
+
+You can rely on the proper, native pug syntax for iteration and conditionals, as well as var interpolation, eg:
+
+```pug
+ul
+  for item in items
+    if item.type == 'link'
+      a some link title: #{item.title}
+    else
+      p= item.content
+```
+
 ## Installation
 
 Note `pug` is a peer dependency, so make sure to install both:
