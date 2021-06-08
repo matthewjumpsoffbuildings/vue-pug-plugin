@@ -177,7 +177,9 @@ Will translate to:
 p(v-for="(item, key) in items" :key="key") foo
 ```
 
-Importantly, if a native pug `for` block has multiple children, since a `template` wrapper will be automatically inserted, if you wish to attach a `:key` attribute to the inserted `template` looping element, you should also use `key` as the name of the loop index variable. For example:
+Any other loop index variable name (eg `for item, index...`, `for item, i...` etc) will not add the `:key` attribute to the looping element.
+
+Importantly, if a native pug `for` block has multiple children, since a `template` wrapper will be automatically inserted, if you are using [Vue 3](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for) and need to attach a `:key` attribute to the inserted `template` looping element, you should also use `key` as the name of the loop index variable. For example:
 
 ```pug
 for item, key in items
@@ -193,7 +195,7 @@ template(v-for="(item, key) in items" :key="key")
   p bar
 ```
 
-Any other loop index variable name (eg `for item, index...`, `for item, i...` etc) will not add the `:key` attribute to the looping element.
+If you are using Vue 2, you cannot add `:key` to a `template` tag, in which case you should not rely on this automatic behaviour, instead manually add the `:key` attribute to each child element. [See here](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for) for more information on the difference between Vue 2/3 and the handling of the `:key` attribute on `template` tags
 
 ## Options
 
