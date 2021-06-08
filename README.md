@@ -32,7 +32,7 @@ ul
   // ...Vue component JS
 ```
 
-Note that since pug natively allows `for` and `if`/`else if`/`else` blocks to have multiple children inside them, but Vue's approach of attaching control logic to individual elements is necessarily singular, if your native pug blocks have multiple children, a `template` tag will be inserted to transparently make it Vue-friendly, eg:
+Note that since pug natively allows `for` and `if`/`else if`/`else` blocks with multiple children inside them, but Vue's approach of attaching control logic to individual elements is necessarily singular, if your native pug blocks have multiple children, a `template` tag will be inserted to transparently make it Vue-friendly, eg:
 
 ```pug
 if foo == 1
@@ -104,7 +104,7 @@ If you also intend to use it to import `.pug` files as HTML strings in JavaScrip
 
 ## Using with Laravel Mix
 
-You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
+You can use `pug-vue-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
 
 ``` js
 .webpackConfig({
@@ -145,12 +145,22 @@ Will become:
 p some normal text {{foo}} hey there
 ```
 
-However, if you use [unbuffered](https://pugjs.org/language/code.html#unbuffered-code) code, that will not be transformed, instead it will be left in the code for _compile-time_. If you want to output a variable from that unbuffered code in your pug template at _compile-time_, you can use [unescaped buffered code](https://pugjs.org/language/code.html#unescaped-buffered-code) and [unescaped string interpolation](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped). For example:
+Note that for Vue _attributes_ you should continue to wrap them in string literals, eg:
+
+```pug
+//- correct
+a(:href="someVueVar + '.com'")
+
+//- incorrect
+a(:href=someVueVar + '.com')
+```
+
+If you use [unbuffered](https://pugjs.org/language/code.html#unbuffered-code) code, that will not be transformed, instead it will be left in the code for _compile-time_. If you want to output a variable from that unbuffered code in your pug template at _compile-time_, you can use [unescaped buffered code](https://pugjs.org/language/code.html#unescaped-buffered-code) and [unescaped string interpolation](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped). For example:
 
 ```pug
 - var unbuffered = 'foo'
 
-p!= unbuffered // <--- will insert 'foo' at compile-time, not client-side
+p!= unbuffered // <--- will insert 'foo' at compile-time, not dynamically via Vue client-side
 ```
 
 The majority of the time when using pug inside a Vue template, you only really care about _Vue_ data/variables, hence why the more common pug buffered/escaped symbols are transformed into the Vue antlers syntax
@@ -195,7 +205,7 @@ template(v-for="(item, key) in items" :key="key")
   p bar
 ```
 
-If you are using Vue 2, you cannot add `:key` to a `template` tag, in which case you should not rely on this automatic behaviour, instead manually add the `:key` attribute to each child element. [See here](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for) for more information on the difference between Vue 2/3 and the handling of the `:key` attribute on `template` tags
+If you are using Vue 2 and a pug `for` block has multiple children, you cannot add `:key` to a `template` tag, in which case you should not rely on this automatic behaviour. Instead, manually add the `:key` attribute to each child element, or use your own wrapper element with something like `:key="index"` specified. [See here](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for) for more information on the difference between Vue 2/3 and the handling of the `:key` attribute on `template` tags
 
 ## Options
 
