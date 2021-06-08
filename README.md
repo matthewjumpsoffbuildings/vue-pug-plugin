@@ -7,7 +7,7 @@ A loader that simply compiles pug templates into HTML.
 Note `pug` is a peer dependency, so make sure to install both:
 
 ``` sh
-npm install -D pug-plain-loader pug
+npm install -D pug-vue-loader pug
 ```
 
 ## Usage
@@ -22,7 +22,7 @@ If you are only using this loader for templating in single-file Vue components, 
     rules: [
       {
         test: /\.pug$/,
-        loader: 'pug-plain-loader'
+        loader: 'pug-vue-loader'
       }
     ]
   }
@@ -43,11 +43,11 @@ If you also intend to use it to import `.pug` files as HTML strings in JavaScrip
           // this applies to pug imports inside JavaScript
           {
             exclude: /\.vue$/,
-            use: ['raw-loader', 'pug-plain-loader']
+            use: ['raw-loader', 'pug-vue-loader']
           },
           // this applies to <template lang="pug"> in Vue components
           {
-            use: ['pug-plain-loader']
+            use: ['pug-vue-loader']
           }
         ]
       }
