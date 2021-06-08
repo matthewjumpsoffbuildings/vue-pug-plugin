@@ -45,15 +45,15 @@ function processNodes(nodes, insideConditional = false) {
 			const newNodes = [],
 				consequent = processNodes(node.consequent.nodes),
 				name = insideConditional? 'v-else-if' : 'v-if',
-				vueIfAttr = { name, val: `"${node.test}"`, mustEscape: false }
+				vueIfAttr = [{ name, val: `"${node.test}"`, mustEscape: false }]
 			newNodes.push(
 				processControlNode(consequent, vueIfAttr, `empty ${name}=${node.test}`)
 			)
 
 			if(node.alternate){
 				if(node.alternate.type == 'Block') {
-					const alternate = processNodes(node.alternate.nodes)
-					const vueElseAttr = { name: 'v-else', val: true, mustEscape: false }
+					const alternate = processNodes(node.alternate.nodes),
+						vueElseAttr = [{ name: 'v-else', val: true, mustEscape: false }]
 					newNodes.push(
 						processControlNode(alternate, vueElseAttr, `empty v-else`)
 					)
@@ -66,8 +66,10 @@ function processNodes(nodes, insideConditional = false) {
 		}
 		else // its a loop
 		{
-			const loop = (node.key ? `"(${node.val}, ${node.key})` : `"${node.val}` )+ ` in ${node.obj}"`
-			const vueLoopAttr = { name: 'v-for', val: loop, mustEscape: false }
+			const loop = (node.key ? `"(${node.val}, ${node.key})` : `"${node.val}` )+ ` in ${node.obj}"`,
+				vueLoopAttr = [{ name: 'v-for', val: loop, mustEscape: false }]
+			if(node.key && node.key.toLowerCase() == 'key') 
+				vueLoopAttr.push({name: ':key', val: `"${node.key}"`, mustEscape: false })
 			const children = processNodes(node.block.nodes)
 			nodes[i] = processControlNode(children, vueLoopAttr, `empty v-for=${loop}`)
 		}
@@ -83,12 +85,11 @@ function processControlNode(items, vueAttr, emptyStr) {
 		}
 	else if(items.length > 1)
 		return {
-			block: { type: 'Block', nodes: items }, attrs: [vueAttr],
+			block: { type: 'Block', nodes: items }, attrs: vueAttr,
 			type: 'Tag', name: 'template', selfClosing: false, attributeBlocks: [], isInline: false
 		}
 	else {
-		items[0].attrs.push(vueAttr)
+		items[0].attrs.push(...vueAttr)
 		return items[0]
 	}
 }
-

@@ -1,6 +1,6 @@
 # pug-vue-loader
 
-A loader that compiles [pug](https://github.com/pugjs/pug) templates into HTML specifically for use in Vue component templates. Forked from [yyx990803/pug-plain-loader](https://github.com/yyx990803/pug-plain-loader), added an AST modifying plugin to convert native pug syntax into an AST that Vue will understand
+A loader that compiles [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates. Forked from [yyx990803/pug-plain-loader](https://github.com/yyx990803/pug-plain-loader), added an AST modifying plugin to convert native pug syntax into an AST that Vue will understand
 
 The motivation for this fork is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
 
@@ -101,6 +101,40 @@ If you also intend to use it to import `.pug` files as HTML strings in JavaScrip
   }
 }
 ```
+
+## Using with Laravel Mix
+
+You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
+
+``` js
+.webpackConfig({
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-vue-loader',
+      }
+    ],
+  }
+})
+```
+
+## Loops & Vue iteration keys
+
+If you want your native pug `for` blocks to attach a `:key="key"` attribute to the generated element, use `key` as the name of the loop index variable. For example:
+
+```pug
+for (item, key) in items
+  p foo
+```
+
+Will translate to:
+
+```pug
+p(v-for="(item, key) in items" :key="key") foo
+```
+
+Any other loop index variable name (eg `for (item, index)...`, `for (item, i)...` etc) will not add the `:key` attribute
 
 ## Options
 
