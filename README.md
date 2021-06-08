@@ -102,6 +102,42 @@ If you also intend to use it to import `.pug` files as HTML strings in JavaScrip
 }
 ```
 
+## Vue variable interpolation
+
+Any example of pug [buffered code](https://pugjs.org/language/code.html#buffered-code) will get converted to Vue antlers syntax. For example:
+
+```pug
+p= foo
+```
+
+Will become:
+
+```pug
+p {{foo}}
+```
+
+This also applies to pug [string interpolation](https://pugjs.org/language/interpolation.html), for example:
+
+```pug
+p some normal text #{foo} hey there
+```
+
+Will become:
+
+```pug
+p some normal text {{foo}} hey there
+```
+
+However, if you use [unbuffered](https://pugjs.org/language/code.html#unbuffered-code) code, that will not be transformed, instead it will be left in the code for _compile-time_. If you want to output a variable from that unbuffered code in your pug template at _compile-time_, you can use [unescaped buffered code](https://pugjs.org/language/code.html#unescaped-buffered-code) and [unescaped string interpolation](https://pugjs.org/language/interpolation.html#string-interpolation-unescaped). For example:
+
+```pug
+- var unbuffered = 'foo'
+
+p!= unbuffered // <--- will insert 'foo' at compile-time, not client-side
+```
+
+The majority of the time when using pug inside a Vue template, you only really care about _Vue_ data/variables, hence why the default buffered/unescaped code syntax is transformed into the Vue antlers syntax
+
 ## Using with Laravel Mix
 
 You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:

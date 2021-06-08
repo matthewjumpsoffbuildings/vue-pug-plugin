@@ -29,7 +29,7 @@ function processNodes(nodes, insideConditional = false) {
 			if(node.block)
 				node.block.nodes = processNodes(node.block.nodes)
 
-			if(node.type == 'Code')
+			if(node.type == 'Code' && node.buffer && node.mustEscape)
 			{
 				node.type = 'Text'
 				node.val = `{{${node.val}}}`
