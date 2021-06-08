@@ -102,9 +102,26 @@ If you also intend to use it to import `.pug` files as HTML strings in JavaScrip
 }
 ```
 
+## Using with Laravel Mix
+
+You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
+
+``` js
+.webpackConfig({
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        loader: 'pug-vue-loader',
+      }
+    ],
+  }
+})
+```
+
 ## Vue variable interpolation
 
-Any example of pug [buffered code](https://pugjs.org/language/code.html#buffered-code) will get converted to Vue antlers syntax. For example:
+Any instance of pug [buffered code](https://pugjs.org/language/code.html#buffered-code) will get converted to Vue antlers syntax. For example:
 
 ```pug
 p= foo
@@ -137,23 +154,6 @@ p!= unbuffered // <--- will insert 'foo' at compile-time, not client-side
 ```
 
 The majority of the time when using pug inside a Vue template, you only really care about _Vue_ data/variables, hence why the more common pug buffered/escaped symbols are transformed into the Vue antlers syntax
-
-## Using with Laravel Mix
-
-You can use `vue-pug-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
-
-``` js
-.webpackConfig({
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        loader: 'pug-vue-loader',
-      }
-    ],
-  }
-})
-```
 
 ## Loops & Vue iteration keys
 
