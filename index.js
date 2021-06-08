@@ -12,3 +12,6 @@ module.exports = function (source) {
   template.dependencies.forEach(this.addDependency)
   return template(options.data || {})
 }
+
+
+
