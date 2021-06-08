@@ -7,7 +7,7 @@ The motivation for this fork is to add first-class pug language support in the c
 ```pug
 ul
   li(v-for="item in items")
-    a(v-if="item.type == 'link'") some link title: {{item.title}}
+    a(v-if="item.type == 'link'" :href="item.url") some link title: {{item.title}}
     p(v-else) {{item.content}}
 ```
 
@@ -17,9 +17,25 @@ You can rely on the proper, native pug syntax for iteration and conditionals, as
 ul
   for item in items
     if item.type == 'link'
-      a some link title: #{item.title}
+      a(:href="item.url") some link title: #{item.title}
     else
       p= item.content
+```
+
+Note that since pug natively allows `for` and `if`/`else if`/`else` blocks to have multiple children inside them, but Vue's approach of attaching control logic to individual elements is necessarily singular, if your native pug blocks have multiple children, a `template` tag will be inserted to transparently make it Vue-friendly, eg:
+
+```pug
+if foo == 1
+  h1 Hello
+  p It's foo!
+```
+
+Gets translated to:
+
+```pug
+template(v-if="foo == 1")
+  h1 Hello
+  p It's foo!
 ```
 
 ## Installation
