@@ -1,6 +1,6 @@
 {
   "name": "pug-vue-loader",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Pug to plain html loader for vue+webpack with proper pug syntax support",
   "main": "index.js",
   "repository": {

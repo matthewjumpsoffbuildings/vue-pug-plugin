@@ -1,6 +1,6 @@
 # pug-vue-loader
 
-A loader that simply compiles pug templates into HTML. Forked from @yyx990803/pug-plain-loader
+A loader that compiles pug templates into HTML specifically for use in Vue component templates. Forked from [yyx990803/pug-plain-loader](https://github.com/yyx990803/pug-plain-loader)
 
 The motivation for this fork is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
 
