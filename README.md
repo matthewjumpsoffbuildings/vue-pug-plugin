@@ -16,7 +16,7 @@ ul
   // ...Vue component JS
 ```
 
-You can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
+With `pug-vue-loader` you can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
 
 ```pug
 <template lang="pug">
