@@ -136,7 +136,7 @@ However, if you use [unbuffered](https://pugjs.org/language/code.html#unbuffered
 p!= unbuffered // <--- will insert 'foo' at compile-time, not client-side
 ```
 
-The majority of the time when using pug inside a Vue template, you only really care about _Vue_ data/variables, hence why the default buffered/unescaped code syntax is transformed into the Vue antlers syntax
+The majority of the time when using pug inside a Vue template, you only really care about _Vue_ data/variables, hence why the more common pug buffered/escaped symbols are transformed into the Vue antlers syntax
 
 ## Using with Laravel Mix
 
