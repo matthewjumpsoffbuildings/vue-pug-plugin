@@ -1,6 +1,6 @@
-# pug-plain-loader
+# pug-vue-loader
 
-A loader that simply compiles pug templates into HTML.
+A loader that simply compiles pug templates into HTML. Forked from @yyx990803/pug-plain-loader
 
 ## Installation
 
