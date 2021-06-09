@@ -22,7 +22,7 @@ module.exports = function (source)
 	return template(options.data || {})
 }
 
-function processNodes(nodes, insideConditional = false)
+export function processNodes(nodes, insideConditional = false)
 {
 	for (let i = 0; i<nodes.length; i++)
 	{
