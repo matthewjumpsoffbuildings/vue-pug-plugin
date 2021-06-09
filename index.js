@@ -1,7 +1,8 @@
 const pug = require('pug')
 const loaderUtils = require('loader-utils')
 
-module.exports = function (source) {
+module.exports = function (source)
+{
 	const options = Object.assign({
 		filename: this.resourcePath,
 		doctype: 'html',
@@ -21,11 +22,14 @@ module.exports = function (source) {
 	return template(options.data || {})
 }
 
-function processNodes(nodes, insideConditional = false) {
-	for (let i = 0; i<nodes.length; i++) {
+function processNodes(nodes, insideConditional = false)
+{
+	for (let i = 0; i<nodes.length; i++)
+	{
 		const node = nodes[i]
 
-		if(!/Each|Conditional/.test(node.type)) {
+		if(!/Each|Conditional/.test(node.type))
+		{
 			if(node.block)
 				node.block.nodes = processNodes(node.block.nodes)
 
@@ -46,18 +50,22 @@ function processNodes(nodes, insideConditional = false) {
 				consequent = processNodes(node.consequent.nodes),
 				name = insideConditional? 'v-else-if' : 'v-if',
 				vueIfAttr = [{ name, val: `"${node.test}"`, mustEscape: false }]
+
 			newNodes.push(
 				processControlNode(consequent, vueIfAttr, `empty ${name}=${node.test}`)
 			)
 
-			if(node.alternate){
-				if(node.alternate.type == 'Block') {
+			if(node.alternate)
+			{
+				if(node.alternate.type == 'Block')
+				{
 					const alternate = processNodes(node.alternate.nodes),
 						vueElseAttr = [{ name: 'v-else', val: true, mustEscape: false }]
 					newNodes.push(
 						processControlNode(alternate, vueElseAttr, `empty v-else`)
 					)
-				} else
+				}
+				else
 					newNodes.push( ...processNodes([node.alternate], true))
 			}
 			
@@ -78,7 +86,8 @@ function processNodes(nodes, insideConditional = false) {
 	return nodes
 }
 
-function processControlNode(items, vueAttr, emptyStr) {
+function processControlNode(items, vueAttr, emptyStr)
+{
 	if(!items.length)
 		return {
 			type: 'Comment', val: emptyStr, buffer: true, line: node.line, column: node.column, filename:node.filename 
@@ -88,7 +97,8 @@ function processControlNode(items, vueAttr, emptyStr) {
 			block: { type: 'Block', nodes: items }, attrs: vueAttr,
 			type: 'Tag', name: 'template', selfClosing: false, attributeBlocks: [], isInline: false
 		}
-	else {
+	else
+	{
 		items[0].attrs.push(...vueAttr)
 		return items[0]
 	}
