@@ -174,11 +174,3 @@ template(v-for="(item, key) in items" :key="key")
 ```
 
 If you are using Vue 2 and a pug `for` block has multiple children, you cannot add `:key` to a `template` tag, in which case you should not rely on this automatic behaviour. Instead, manually add the `:key` attribute to each child element, or use your own wrapper element with something like `:key="index"` specified. [See here](https://v3.vuejs.org/guide/migration/key-attribute.html#with-template-v-for) for more information on the difference between Vue 2/3 and the handling of the `:key` attribute on `template` tags
-
-## Options
-
-See [Pug compiler options](https://pugjs.org/api/reference.html#options).
-
-The `doctype` option is set to `html` by default, since most Vue templates are HTML fragments without explicit doctype.
-
-An additional option `data` can be used to pass locals for the template, although this is typically not recommended when using in Vue components.
