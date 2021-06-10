@@ -2,7 +2,7 @@
 
 A plugin that transforms [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates.
 
-The motivation for plugin is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
+The motivation for this plugin is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
 
 ```pug
 <template lang="pug">
