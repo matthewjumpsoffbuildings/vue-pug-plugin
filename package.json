@@ -1,6 +1,6 @@
 {
   "name": "pug-vue-plugin",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Pug to html plugin for Vue with proper native pug syntax support",
   "main": "index.js",
   "repository": {
@@ -13,9 +13,9 @@
   "homepage": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin",
   "keywords": [
     "pug",
-    "loader",
-    "webpack",
-    "plain"
+    "vue",
+    "template",
+    "html"
   ],
   "author": "Matthew P",
   "license": "MIT",
