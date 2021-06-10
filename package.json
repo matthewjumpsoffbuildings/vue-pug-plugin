@@ -1,23 +1,23 @@
 {
-  "name": "pug-vue-loader",
-  "version": "1.1.17",
-  "description": "Pug to plain html loader for vue+webpack/mix with proper native pug syntax support",
+  "name": "pug-vue-plugin",
+  "version": "1.0.0",
+  "description": "Pug to plain html plugin for Vue with proper native pug syntax support",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-loader.git"
+    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-loader/issues"
+    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin/issues"
   },
-  "homepage": "https://github.com/matthewjumpsoffbuildings/pug-vue-loader",
+  "homepage": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin",
   "keywords": [
     "pug",
     "loader",
     "webpack",
     "plain"
   ],
-  "author": "Matthew P, Evan You <yyx990803@gmail.com>",
+  "author": "Matthew P",
   "license": "MIT",
   "peerDependencies": {
     "pug": "^2.0.0 || ^3.0.0"

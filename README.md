@@ -1,8 +1,8 @@
-# pug-vue-loader
+# pug-vue-plugin
 
-A loader that compiles [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates. Forked from [yyx990803/pug-plain-loader](https://github.com/yyx990803/pug-plain-loader), added an AST modifying plugin to convert native pug syntax into an AST that Vue will understand
+A loader that compiles [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates. Uses an AST modifying function to convert native pug syntax into an AST that Vue will understand
 
-The motivation for this fork is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
+The motivation for plugin is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
 
 ```pug
 <template lang="pug">
@@ -16,7 +16,7 @@ ul
   // ...Vue component JS
 ```
 
-With `pug-vue-loader` you can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
+With `pug-vue-plugin` you can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
 
 ```pug
 <template lang="pug">
@@ -53,71 +53,39 @@ template(v-if="foo == 1")
 Note `pug` is a peer dependency, so make sure to install both:
 
 ``` sh
-npm install -D pug-vue-loader pug
+npm install -D pug-vue-plugin pug
 ```
 
 ## Usage
 
-This loader is mostly intended to be used alongside `vue-loader` v15+, since it now requires using webpack loaders to handle template preprocessors.
+You can use `pug-vue-plugin` with any build tool or bundler, long as you can pass [pug compiler options](https://pugjs.org/api/reference.html) through to the pug preprocessor. All that is required is that you pass `pug-vue-plugin` as a `preCodeGen` plugin to the pug plugins array
 
-If you are only using this loader for templating in single-file Vue components, simply configure it with:
+### Rollup / Vite
 
-``` js
-{
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        loader: 'pug-vue-loader'
+As an example, when using Rollup or Vite, add the `pug-vue-plugin` method to the `vue()` plugins template config:
+
+```ts
+const pugVuePlugin = require('pug-vue-plugin')
+
+export default {
+  plugins: [
+    vue({
+      template: {
+        preprocessOptions: {
+          plugins: [{
+            preCodeGen: pugVuePlugin
+          }]
+        }
       }
-    ]
-  }
+    })
+  ]
 }
 ```
 
-This will apply this loader to all `<template lang="pug">` blocks in your Vue components.
+### Webpack / Laravel Mix
 
-If you also intend to use it to import `.pug` files as HTML strings in JavaScript, you will need to chain `raw-loader` after this loader. Note however adding `raw-loader` would break the output for Vue components, so you need to have two rules, one of them excluding Vue components:
+For use with Webpack or Laravel Mix, use [pug-vue-loader](https://npmjs.com/pug-vue-loader) instead
 
-``` js
-{
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        oneOf: [
-          // this applies to pug imports inside JavaScript
-          {
-            exclude: /\.vue$/,
-            use: ['raw-loader', 'pug-vue-loader']
-          },
-          // this applies to <template lang="pug"> in Vue components
-          {
-            use: ['pug-vue-loader']
-          }
-        ]
-      }
-    ]
-  }
-}
-```
-
-## Using with Laravel Mix
-
-You can use `pug-vue-loader` in [Laravel Mix](https://laravel-mix.com/) by passing the relevant Webpack rules to Mix's `webpackConfig` method, eg:
-
-``` js
-.webpackConfig({
-  module: {
-    rules: [
-      {
-        test: /\.pug$/,
-        loader: 'pug-vue-loader',
-      }
-    ],
-  }
-})
-```
 
 ## Vue variable interpolation
 
