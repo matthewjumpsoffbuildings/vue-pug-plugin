@@ -1,6 +1,6 @@
 # pug-vue-plugin
 
-A loader that compiles [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates. Uses an AST modifying function to convert native pug syntax into an AST that Vue will understand
+A plugin that transforms [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates.
 
 The motivation for plugin is to add first-class pug language support in the context of Vue components. Instead of writing an ugly mish-mash of pug _and_ Vue syntax in your component, eg:
 
