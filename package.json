@@ -1,5 +1,5 @@
 {
-  "name": "vue-pug-plugin",
+  "name": "pug-vue-plugin",
   "version": "1.0.10",
   "description": "Pug to HTML plugin for Vue with proper native pug syntax support",
   "main": "index.js",
