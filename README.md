@@ -65,7 +65,7 @@ You can use `vue-pug-plugin` with any build tool or bundler, long as you can pas
 As an example, when using Rollup or Vite, add the `vue-pug-plugin` method to the `vue()` plugins template config:
 
 ```ts
-const pugVuePlugin = require('vue-pug-plugin')
+const vuePugPlugin = require('vue-pug-plugin')
 
 export default {
   plugins: [
@@ -73,7 +73,7 @@ export default {
       template: {
         preprocessOptions: { // 'preprocessOptions' is passed through to the pug compiler 
           plugins: [{
-            preCodeGen: pugVuePlugin
+            preCodeGen: vuePugPlugin
           }]
         }
       }
