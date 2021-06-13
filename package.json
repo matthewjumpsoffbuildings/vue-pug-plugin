@@ -1,16 +1,16 @@
 {
-  "name": "pug-vue-plugin",
-  "version": "1.0.7",
+  "name": "vue-pug-plugin",
+  "version": "1.0.9",
   "description": "Pug to HTML plugin for Vue with proper native pug syntax support",
   "main": "index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin.git"
+    "url": "https://github.com/matthewjumpsoffbuildings/vue-pug-plugin.git"
   },
   "bugs": {
-    "url": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin/issues"
+    "url": "https://github.com/matthewjumpsoffbuildings/vue-pug-plugin/issues"
   },
-  "homepage": "https://github.com/matthewjumpsoffbuildings/pug-vue-plugin",
+  "homepage": "https://github.com/matthewjumpsoffbuildings/vue-pug-plugin",
   "keywords": [
     "pug",
     "vue",

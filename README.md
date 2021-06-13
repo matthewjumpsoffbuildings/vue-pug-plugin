@@ -1,4 +1,4 @@
-# pug-vue-plugin
+# vue-pug-plugin
 
 A plugin that transforms [pug](https://pugjs.org) templates into HTML specifically for use in Vue component templates.
 
@@ -16,7 +16,7 @@ ul
   // ...Vue component JS
 ```
 
-With `pug-vue-plugin` you can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
+With `vue-pug-plugin` you can rely on the proper, first-class native pug syntax for iteration and conditionals, as well as var interpolation, eg:
 
 ```pug
 <template lang="pug">
@@ -53,19 +53,19 @@ template(v-if="foo == 1")
 Note `pug` is a peer dependency, so make sure to install both:
 
 ``` sh
-npm install -D pug-vue-plugin pug
+npm install -D vue-pug-plugin pug
 ```
 
 ## Usage
 
-You can use `pug-vue-plugin` with any build tool or bundler, long as you can pass [pug compiler options](https://pugjs.org/api/reference.html) through to the pug preprocessor. All that is required is that you pass `pug-vue-plugin` as a `preCodeGen` plugin to the pug options `plugins` array
+You can use `vue-pug-plugin` with any build tool or bundler, long as you can pass [pug compiler options](https://pugjs.org/api/reference.html) through to the pug preprocessor. All that is required is that you pass `vue-pug-plugin` as a `preCodeGen` plugin to the pug options `plugins` array
 
 ### Rollup / Vite
 
-As an example, when using Rollup or Vite, add the `pug-vue-plugin` method to the `vue()` plugins template config:
+As an example, when using Rollup or Vite, add the `vue-pug-plugin` method to the `vue()` plugins template config:
 
 ```ts
-const pugVuePlugin = require('pug-vue-plugin')
+const pugVuePlugin = require('vue-pug-plugin')
 
 export default {
   plugins: [
