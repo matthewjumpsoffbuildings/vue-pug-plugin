@@ -89,7 +89,9 @@ For use with Webpack or Laravel Mix, use [vue-pug-loader](https://npmjs.com/pack
 
 ## Vue variable interpolation
 
-Any instance of pug [buffered code](https://pugjs.org/language/code.html#buffered-code) will get converted to Vue antlers syntax. For example:
+You can continue to use Vue-style variable interpolation (eg `{{ foo }}`) if you wish, but you may also prefer to use pug style interpolation instead.
+
+However, if you prefer to stick to native pug interpolation syntax, any instance of pug [buffered code](https://pugjs.org/language/code.html#buffered-code) will also get converted to Vue antlers syntax. For example:
 
 ```pug
 p= foo
