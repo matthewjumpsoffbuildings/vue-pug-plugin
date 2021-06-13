@@ -84,7 +84,7 @@ export default {
 
 ### Webpack / Laravel Mix
 
-For use with Webpack or Laravel Mix, use [pug-vue-loader](https://npmjs.com/pug-vue-loader) instead
+For use with Webpack or Laravel Mix, use [vue-pug-loader](https://npmjs.com/package/vue-pug-loader) instead
 
 
 ## Vue variable interpolation
