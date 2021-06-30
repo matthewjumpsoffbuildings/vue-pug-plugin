@@ -1,8 +1,11 @@
 {
   "name": "vue-pug-plugin",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Pug to HTML plugin for Vue with proper native pug syntax support",
   "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/matthewjumpsoffbuildings/vue-pug-plugin.git"
@@ -20,12 +23,9 @@
   "author": "matthewjumpsoffbuildings",
   "license": "MIT",
   "peerDependencies": {
-    "pug": "^2.0.0 || ^3.0.0"
-  },
-  "dependencies": {
-    "loader-utils": "^1.1.0"
+    "pug": "^3.0.1"
   },
   "devDependencies": {
-    "pug": "^2.0.3"
+    "pug": "^3.0.1"
   }
 }

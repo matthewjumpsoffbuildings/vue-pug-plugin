@@ -1,0 +1,5 @@
+.times
+	for error in errors
+		if error.times
+			for t in error.times
+				.error-segment(:style="`left: ${(t.time/duration)*100}%;`")
