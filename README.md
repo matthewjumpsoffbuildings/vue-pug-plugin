@@ -22,10 +22,11 @@ With `vue-pug-plugin` you can rely on the proper, first-class native pug syntax 
 <template lang="pug">
 ul
   for item in items
-    if item.type == 'link'
-      a(:href="item.url") some link title: #{item.title}
-    else
-      p= item.content
+    li
+      if item.type == 'link'
+        a(:href="item.url") some link title: #{item.title}
+      else
+        p= item.content
 </template>
 
 <script>
