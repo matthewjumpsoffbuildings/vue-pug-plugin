@@ -59,15 +59,21 @@ npm install -D vue-pug-plugin pug
 
 ## Usage
 
-You can use `vue-pug-plugin` with any build tool or bundler, long as you can pass [pug compiler options](https://pugjs.org/api/reference.html) through to the pug preprocessor. All that is required is that you pass `vue-pug-plugin` as a `preCodeGen` plugin to the pug options `plugins` array
+You can use `vue-pug-plugin` with any build tool or bundler, long as you can pass [pug compiler options](https://pugjs.org/api/reference.html) through to the pug preprocessor. All that is required is that you pass the default export from `vue-pug-plugin` as a `preCodeGen` plugin to the pug options `plugins` array
+
+```ts
+// CommonJS require syntax
+const vuePugPlugin = require('vue-pug-plugin')
+
+// ES6 import syntax
+import vuePugPlugin from 'vue-pug-plugin'
+```
 
 ### Rollup / Vite
 
-As an example, when using Rollup or Vite, add the `vue-pug-plugin` method to the `vue()` plugins template config:
+As an example, when using Rollup or Vite, add the imported `vuePugPlugin` method to the `vue()` plugins template config:
 
 ```ts
-const vuePugPlugin = require('vue-pug-plugin')
-
 export default {
   plugins: [
     vue({
