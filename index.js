@@ -1,7 +1,8 @@
-module.exports = function(ast, options) 
-{
-	ast.nodes = processNodes(ast.nodes)
-	return ast
+module.exports = {
+	preCodeGen: function(ast, options) {
+		ast.nodes = processNodes(ast.nodes)
+		return ast
+	}
 }
 
 function processNodes(nodes, insideConditional = false)
