@@ -1,5 +1,8 @@
-.times
-	for error in errors
-		if error.times
-			for t in error.times
-				.error-segment(:style="`left: ${(t.time/duration)*100}%;`")
+ul
+	for issueCollection, index in issueCollections
+		if issueCollection.resupply && !issueCollection.hidden
+			li= issueCollection.title
+
+ul
+	for issueCollection, index in issueCollections
+		li= issueCollection.title

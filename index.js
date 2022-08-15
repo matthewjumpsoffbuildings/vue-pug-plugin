@@ -75,17 +75,16 @@ function processControlNode(items, vueAttr, emptyStr)
 		return {
 			type: 'Comment', val: emptyStr, buffer: true, line: node.line, column: node.column, filename:node.filename 
 		}
-	else if(
+
+	if(
 		items.length > 1 ||
-		items[0].attrs.find(a => a.name == vueAttr[0].name)
+		items[0].attrs.find(a => /^v-(for|if|else)/.test(a.name))
 	)
 		return {
 			block: { type: 'Block', nodes: items }, attrs: vueAttr,
 			type: 'Tag', name: 'template', selfClosing: false, attributeBlocks: [], isInline: false
 		}
-	else
-	{
-		items[0].attrs.push(...vueAttr)
-		return items[0]
-	}
+
+	items[0].attrs.push(...vueAttr)
+	return items[0]
 }

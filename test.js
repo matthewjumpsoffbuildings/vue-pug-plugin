@@ -3,7 +3,7 @@ const plugin = require('./index')
 const util = require('util')
 
 const template = pug.compileFile('test.pug', {
-
+	pretty: true,
 	plugins: [
 		plugin,
 		{
