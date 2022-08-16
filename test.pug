@@ -6,3 +6,10 @@ ul
 ul
 	for issueCollection, index in issueCollections
 		li= issueCollection.title
+
+
+p - Audio Peak 
+	if config.useMinPeak
+		| #{config.minPeak}dB to 
+	else
+		| below 

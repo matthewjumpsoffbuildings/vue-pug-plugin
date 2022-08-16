@@ -78,6 +78,7 @@ function processControlNode(items, vueAttr, emptyStr)
 
 	if(
 		items.length > 1 ||
+		!items[0].attrs ||
 		items[0].attrs.find(a => /^v-(for|if|else)/.test(a.name))
 	)
 		return {
